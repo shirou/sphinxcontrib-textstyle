@@ -77,5 +77,5 @@ https://bitbucket.org/r_rudi/sphinxcontrib-textstyle
 License
 ========
 
-Apache
+The BSD 2-Clause License.
 
