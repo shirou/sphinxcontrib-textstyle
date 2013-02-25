@@ -40,15 +40,34 @@ Roles
 
   ::
 
-     :ruby:`強敵<とも>`
+     :ruby:`東京<とうきょう>`
+
+  A first string becomes ruby base (<rb>) and a string which is inside
+  <> becomes ruby text(<rt>).  For rubytag not supported browser such
+  as Firefox, ( and ) are used to represent ruby text(<rp>). You can
+  change this character in the conf.py. See below config section.
 
 - rst:role: del
 
-  del role makes delete.
+  Del role makes delete (<del>).
 
   ::
 
      :del:`Delete`
+
+Config
+=========================
+
+- rubytag_rp_start
+- rubytag_rp_end
+
+These two variables specify chracters which present ruby text.
+
+::
+
+   rubytag_rp_start = '['
+   rubytag_rp_end   = ']'
+
 
 Repository
 ==========
