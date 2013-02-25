@@ -1,10 +1,13 @@
-text style extension README
-==========================
+Text style extension README
+=============================
 
 This is a sphinx extension to use some text styles.
 
-- ruby-tag
+- Ruby Annotation
 - del
+
+Ruby annotation is HTML 5 Ruby tag (http://www.w3.org/TR/ruby/), not ruby
+computer language.
 
 
 Setting
@@ -13,42 +16,44 @@ Setting
 Install
 -------
 
-.. code-block:: bash
+::
 
-   > easy_install sphinxcontrib-textstyle
+   > pip install sphinxcontrib-textstyle
 
 
 Configure Sphinx
 ----------------
 
 To enable this extension, add ``sphinxcontrib.textstyle`` module to extensions
-option at :file:`conf.py`.
+option at `conf.py`.
 
-.. code-block:: python
+::
 
    # Enabled extensions
    extensions = ['sphinxcontrib.textstyle']
 
 
-Directives and Roles
+Roles
 =====================
 
-.. rst:role: ruby
+- ruby role makes ruby tag
 
-   ruby role makes ruby tag
+  ::
 
-      :ruby:`強敵<とも>`
+     :ruby:`強敵<とも>`
 
-.. rst:role: del
+- rst:role: del
 
-   del role makes delete.
+  del role makes delete.
 
-      :del:`Delete`
+  ::
+
+     :del:`Delete`
 
 Repository
 ==========
 
-
+https://bitbucket.org/r_rudi/sphinxcontrib-textstyle
 
 License
 ========
