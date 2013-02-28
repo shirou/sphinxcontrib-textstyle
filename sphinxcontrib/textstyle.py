@@ -13,6 +13,7 @@ from docutils import nodes, utils
 
 import rubytag
 import deltag
+import color
 
 
 def setup(app):
@@ -29,3 +30,9 @@ def setup(app):
     app.add_node(deltag.DelTag,
              html=(deltag.visit_deltag_node, deltag.depart_deltag_node),
              epub=(deltag.visit_deltag_node, deltag.depart_deltag_node))
+
+    # style="color"
+    app.add_role('color', color.color_role)
+    app.add_node(color.Color,
+             html=(color.visit_color_node, color.depart_color_node),
+             epub=(color.visit_color_node, color.depart_color_node))
