@@ -30,6 +30,7 @@ def setup(app):
     app.add_node(deltag.DelTag,
              html=(deltag.visit_deltag_node, deltag.depart_deltag_node),
              epub=(deltag.visit_deltag_node, deltag.depart_deltag_node))
+    app.add_directive('del', deltag.DelDirective)
 
     # style="color"
     app.add_role('color', color.color_role)

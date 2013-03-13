@@ -3,6 +3,7 @@
 
 from docutils import nodes, utils
 from sphinx.util.nodes import split_explicit_title
+from sphinx.util.compat import Directive
 
 
 class DelTag(nodes.General, nodes.Element):
@@ -31,3 +32,13 @@ def deltag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     deltag.text = text
 
     return [deltag], []
+
+
+class DelDirective(Directive):
+    has_content = True
+
+    def run(self):
+        deltag = DelTag()
+        # delete first line which is option
+        deltag.text = '\n'.join(self.content[1:])
+        return [deltag]
