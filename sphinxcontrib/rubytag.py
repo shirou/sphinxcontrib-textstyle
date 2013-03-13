@@ -51,7 +51,7 @@ def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     rubytag.rp_start = config.rubytag_rp_start
     rubytag.rp_end = config.rubytag_rp_end
 
-    if has_explicit == False:
+    if not has_explicit:
         rubytag.rt = None
 
     return [rubytag], []

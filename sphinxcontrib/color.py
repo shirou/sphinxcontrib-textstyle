@@ -37,7 +37,7 @@ def color_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     color.text = text
     color.color = arg
 
-    if has_explicit == False:
+    if not has_explicit:
         color.color = None
 
     return [color], []
