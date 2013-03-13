@@ -5,6 +5,7 @@ This is a sphinx extension to use some text styles.
 
 - Ruby Annotation
 - del
+- color
 
 Ruby annotation is HTML 5 Ruby tag (http://www.w3.org/TR/ruby/), not ruby
 computer language.
@@ -54,6 +55,29 @@ Roles
   ::
 
      :del:`Delete`
+
+- rst:directive: del
+
+  Del is also a directive.
+
+  ::
+
+     .. del::  delete note(not shown)
+
+        This specification will be deleted
+
+
+- rst:role: color
+
+  Color role changes the text color by using <span style="color">.
+  Please keep in mind about this may break the separation of content
+  and presentation.
+
+  ::
+
+     :color:`Color changed<red>`
+
+
 
 Config
 =========================
