@@ -11,9 +11,9 @@ import re
 
 from docutils import nodes, utils
 
-import rubytag
-import deltag
-import color
+from . import rubytag
+from . import deltag
+from . import color
 
 
 def setup(app):
