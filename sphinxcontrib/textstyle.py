@@ -6,14 +6,12 @@
     :copyright: Copyright 2013 by WAKAYAMA Shirou
     :license: BSD, see LICENSE for details.
 """
+from __future__ import absolute_import
 
 import re
-
 from docutils import nodes, utils
 
-from . import rubytag
-from . import deltag
-from . import color
+from sphinxcontrib import rubytag, deltag, color
 
 
 def setup(app):
