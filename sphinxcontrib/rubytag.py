@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from docutils import nodes, utils
-from sphinx.util.nodes import split_explicit_title
+from sphinx.util.nodes import split_explicit_title, set_role_source_info
 
 
 class RubyTag(nodes.General, nodes.Element):
@@ -37,11 +37,12 @@ def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
     if not has_explicit:
         # the role does not have ruby-text is converted to Text node
-        text = nodes.Text(text)
-        return [text], []
+        node = nodes.Text(text)
     else:
-        rubytag = RubyTag(rawtext, base=base, text=text)
-        return [rubytag], []
+        node = RubyTag(rawtext, base=base, text=text)
+
+    set_role_source_info(inliner, lineno, node)
+    return [node], []
 
 
 def setup(app):
