@@ -41,3 +41,11 @@ class DelDirective(Directive):
         # delete first line which is option
         deltag.text = '\n'.join(self.content[1:])
         return [deltag]
+
+
+def setup(app):
+    app.add_role('del', deltag_role)
+    app.add_node(DelTag,
+                 html=(visit_deltag_node, depart_deltag_node),
+                 epub=(visit_deltag_node, depart_deltag_node))
+    app.add_directive('del', DelDirective)

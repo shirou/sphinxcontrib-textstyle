@@ -55,3 +55,12 @@ def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
         rubytag.rt = None
 
     return [rubytag], []
+
+
+def setup(app):
+    app.add_role('ruby', rubytag_role)
+    app.add_node(RubyTag,
+                 html=(visit_rubytag_node, depart_rubytag_node),
+                 epub=(visit_rubytag_node, depart_rubytag_node))
+    app.add_config_value('rubytag_rp_start', '(', 'env')
+    app.add_config_value('rubytag_rp_end', ')', 'env')

@@ -41,3 +41,10 @@ def color_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
         color.color = None
 
     return [color], []
+
+
+def setup(app):
+    app.add_role('color', color_role)
+    app.add_node(Color,
+                 html=(visit_color_node, depart_color_node),
+                 epub=(visit_color_node, depart_color_node))
