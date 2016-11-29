@@ -13,10 +13,6 @@ def visit_rubytag_node(self, node):
     paren_start = self.builder.config.rubytag_rp_start
     paren_end = self.builder.config.rubytag_rp_end
 
-    if node.rt is None:  # if rt is not set, just write rb.
-        self.body.append(node.rb)
-        return
-
     try:
         self.body.append(self.starttag(node, 'ruby'))
         self.body.append(self.starttag(node, 'rb'))
@@ -46,14 +42,15 @@ def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     text = utils.unescape(text)
     has_explicit, rb, rt = split_explicit_title(text)
 
-    rubytag = RubyTag()
-    rubytag.rb = rb
-    rubytag.rt = rt
-
     if not has_explicit:
-        rubytag.rt = None
-
-    return [rubytag], []
+        # the role does not have ruby-text is converted to Text node
+        text = nodes.Text(text)
+        return [text], []
+    else:
+        rubytag = RubyTag()
+        rubytag.rb = rb
+        rubytag.rt = rt
+        return [rubytag], []
 
 
 def setup(app):

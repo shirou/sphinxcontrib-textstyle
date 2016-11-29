@@ -20,6 +20,9 @@ def test_build_html(app, status, warnings):
                 ')</rp></ruby>')
     assert expected in html
 
+    expected = 'A ruby not having ruby-text: 東京'
+    assert expected in html
+
     # :del: role
     expected = ('A deleted text: <del>\n'
                 'Delete</del>')
