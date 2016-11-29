@@ -12,12 +12,8 @@ def test_build_html(app, status, warnings):
     print(html)
 
     # :ruby: role
-    expected = ('A text having ruby: <ruby>\n'
-                '<rb>\n'
-                '東京</rb><rp>\n'
-                '(</rp><rt>\n'
-                'とうきょう</rt><rp>\n'
-                ')</rp></ruby>')
+    expected = ('A text having ruby: <ruby><rb>東京</rb>'
+                '<rp>(</rp><rt>とうきょう</rt><rp>)</rp></ruby>')
     assert expected in html
 
     expected = 'A ruby not having ruby-text: 東京'

@@ -14,17 +14,17 @@ def visit_rubytag_node(self, node):
     paren_end = self.builder.config.rubytag_rp_end
 
     try:
-        self.body.append(self.starttag(node, 'ruby'))
-        self.body.append(self.starttag(node, 'rb'))
+        self.body.append(self.starttag(node, 'ruby', suffix=''))
+        self.body.append(self.starttag(node, 'rb', suffix=''))
         self.body.append(node.rb)
         self.body.append('</rb>')
-        self.body.append(self.starttag(node, 'rp'))
+        self.body.append(self.starttag(node, 'rp', suffix=''))
         self.body.append(paren_start)
         self.body.append('</rp>')
-        self.body.append(self.starttag(node, 'rt'))
+        self.body.append(self.starttag(node, 'rt', suffix=''))
         self.body.append(node.rt)
         self.body.append('</rt>')
-        self.body.append(self.starttag(node, 'rp'))
+        self.body.append(self.starttag(node, 'rp', suffix=''))
         self.body.append(paren_end)
         self.body.append('</rp>')
         self.body.append('</ruby>')
