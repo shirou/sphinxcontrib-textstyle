@@ -24,8 +24,7 @@ def test_build_html(app, status, warnings):
     assert expected in html
 
     # del directive
-    expected = ('<del>\n'
-                'This is a deleted block.</del>')
+    expected = '<p><del>This is a deleted block.</del></p>'
     assert expected in html
 
     # :color: role

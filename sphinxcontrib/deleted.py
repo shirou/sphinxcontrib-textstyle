@@ -6,7 +6,7 @@ from sphinx.util.compat import Directive
 from sphinx.util.nodes import set_role_source_info
 
 
-class deleted(nodes.General, nodes.TextElement):
+class deleted(nodes.General, nodes.TextElement, nodes.Inline):
     pass
 
 
@@ -30,9 +30,11 @@ class DeletedDirective(Directive):
     has_content = True
 
     def run(self):
-        text = '\n'.join(self.content[1:])
-        node = deleted(text, text)
-        return [node]
+        text = '\n'.join(self.content[1:]).strip()
+
+        para = nodes.paragraph()
+        para += deleted(text, text)
+        return [para]
 
 
 def setup(app):
