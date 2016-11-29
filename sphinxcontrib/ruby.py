@@ -5,7 +5,7 @@ from docutils import nodes, utils
 from sphinx.util.nodes import split_explicit_title, set_role_source_info
 
 
-class ruby(nodes.General, nodes.Element):
+class ruby(nodes.General, nodes.Element, nodes.Inline):
     pass
 
 
