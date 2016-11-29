@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from docutils import nodes, utils
-from sphinx.util.nodes import split_explicit_title
 from sphinx.util.compat import Directive
 
 

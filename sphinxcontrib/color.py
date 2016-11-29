@@ -19,7 +19,7 @@ def visit_color_node(self, node):
                                        node.text,
                                        style="color: " + node.color))
         self.body.append('</span>')
-    except Exception as e:
+    except Exception:
         self.builder.warn('fail to load color: %r' % node)
         raise nodes.SkipNode
 
