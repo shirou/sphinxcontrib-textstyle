@@ -47,8 +47,6 @@ def ruby_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
 def setup(app):
     app.add_role('ruby', ruby_role)
-    app.add_node(ruby,
-                 html=(visit_ruby, None),
-                 epub=(visit_ruby, None))
+    app.add_node(ruby, html=(visit_ruby, None))
     app.add_config_value('rubytag_rp_start', '(', 'env')
     app.add_config_value('rubytag_rp_end', ')', 'env')
