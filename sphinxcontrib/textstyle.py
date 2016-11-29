@@ -10,9 +10,9 @@ from __future__ import absolute_import
 
 
 def setup(app):
-    from sphinxcontrib import ruby, deltag, color
+    from sphinxcontrib import ruby, deleted, color
 
     # delegate to submodules
     ruby.setup(app)
-    deltag.setup(app)
+    deleted.setup(app)
     color.setup(app)
