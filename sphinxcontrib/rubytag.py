@@ -13,28 +13,21 @@ def visit_rubytag_node(self, node):
     paren_start = self.builder.config.rubytag_rp_start
     paren_end = self.builder.config.rubytag_rp_end
 
-    try:
-        self.body.append(self.starttag(node, 'ruby', suffix=''))
-        self.body.append(self.starttag(node, 'rb', suffix=''))
-        self.body.append(node.rb)
-        self.body.append('</rb>')
-        self.body.append(self.starttag(node, 'rp', suffix=''))
-        self.body.append(paren_start)
-        self.body.append('</rp>')
-        self.body.append(self.starttag(node, 'rt', suffix=''))
-        self.body.append(node.rt)
-        self.body.append('</rt>')
-        self.body.append(self.starttag(node, 'rp', suffix=''))
-        self.body.append(paren_end)
-        self.body.append('</rp>')
-        self.body.append('</ruby>')
-    except:
-        self.builder.warn('fail to load rubytag: %r' % node)
-        raise nodes.SkipNode
-
-
-def depart_rubytag_node(self, node):
-    pass
+    self.body.append(self.starttag(node, 'ruby', suffix=''))
+    self.body.append(self.starttag(node, 'rb', suffix=''))
+    self.body.append(node.rb)
+    self.body.append('</rb>')
+    self.body.append(self.starttag(node, 'rp', suffix=''))
+    self.body.append(paren_start)
+    self.body.append('</rp>')
+    self.body.append(self.starttag(node, 'rt', suffix=''))
+    self.body.append(node.rt)
+    self.body.append('</rt>')
+    self.body.append(self.starttag(node, 'rp', suffix=''))
+    self.body.append(paren_end)
+    self.body.append('</rp>')
+    self.body.append('</ruby>')
+    raise nodes.SkipNode
 
 
 def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
@@ -56,7 +49,7 @@ def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
 def setup(app):
     app.add_role('ruby', rubytag_role)
     app.add_node(RubyTag,
-                 html=(visit_rubytag_node, depart_rubytag_node),
-                 epub=(visit_rubytag_node, depart_rubytag_node))
+                 html=(visit_rubytag_node, None),
+                 epub=(visit_rubytag_node, None))
     app.add_config_value('rubytag_rp_start', '(', 'env')
     app.add_config_value('rubytag_rp_end', ')', 'env')
