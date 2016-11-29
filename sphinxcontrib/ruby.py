@@ -5,11 +5,11 @@ from docutils import nodes, utils
 from sphinx.util.nodes import split_explicit_title, set_role_source_info
 
 
-class RubyTag(nodes.General, nodes.Element):
+class ruby(nodes.General, nodes.Element):
     pass
 
 
-def visit_rubytag_node(self, node):
+def visit_ruby(self, node):
     paren_start = self.builder.config.rubytag_rp_start
     paren_end = self.builder.config.rubytag_rp_end
 
@@ -30,7 +30,7 @@ def visit_rubytag_node(self, node):
     raise nodes.SkipNode
 
 
-def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+def ruby_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """Role for rubytag."""
     text = utils.unescape(text)
     has_explicit, base, text = split_explicit_title(text)
@@ -39,16 +39,16 @@ def rubytag_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
         # the role does not have ruby-text is converted to Text node
         node = nodes.Text(text)
     else:
-        node = RubyTag(rawtext, base=base, text=text)
+        node = ruby(rawtext, base=base, text=text)
 
     set_role_source_info(inliner, lineno, node)
     return [node], []
 
 
 def setup(app):
-    app.add_role('ruby', rubytag_role)
-    app.add_node(RubyTag,
-                 html=(visit_rubytag_node, None),
-                 epub=(visit_rubytag_node, None))
+    app.add_role('ruby', ruby_role)
+    app.add_node(ruby,
+                 html=(visit_ruby, None),
+                 epub=(visit_ruby, None))
     app.add_config_value('rubytag_rp_start', '(', 'env')
     app.add_config_value('rubytag_rp_end', ')', 'env')
