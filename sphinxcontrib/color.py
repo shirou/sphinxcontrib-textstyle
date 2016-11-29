@@ -2,49 +2,37 @@
 # -*- coding: utf-8 -*-
 
 from docutils import nodes, utils
-from sphinx.util.nodes import split_explicit_title
+from sphinx.util.nodes import split_explicit_title, set_role_source_info
 
 
-class Color(nodes.General, nodes.Element):
+class color(nodes.General, nodes.TextElement, nodes.Inline):
     pass
 
 
-def visit_color_node(self, node):
-    if node.color is None:  # if not set, just write text.
-        self.body.append(node.text)
-        return
-
-    try:
-        self.body.append(self.starttag(node, 'span',
-                                       node.text,
-                                       style="color: " + node.color))
-        self.body.append('</span>')
-    except Exception:
-        self.builder.warn('fail to load color: %r' % node)
-        raise nodes.SkipNode
+def visit_color(self, node):
+    style = "color: %s" % node['color']
+    self.body.append(self.starttag(node, 'span', style=style, suffix=''))
 
 
-def depart_color_node(self, node):
-    pass
+def depart_color(self, node):
+    self.body.append('</span>')
 
 
 def color_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """Role for color."""
     text = utils.unescape(text)
-    has_explicit, text, arg = split_explicit_title(text)
-
-    color = Color()
-    color.text = text
-    color.color = arg
+    has_explicit, text, colorspec = split_explicit_title(text)
 
     if not has_explicit:
-        color.color = None
+        # the role does not have color-spec is converted to Text node
+        node = nodes.Text(text)
+    else:
+        node = color(rawtext, text, color=colorspec)
 
-    return [color], []
+    set_role_source_info(inliner, lineno, node)
+    return [node], []
 
 
 def setup(app):
     app.add_role('color', color_role)
-    app.add_node(Color,
-                 html=(visit_color_node, depart_color_node),
-                 epub=(visit_color_node, depart_color_node))
+    app.add_node(color, html=(visit_color, depart_color))
