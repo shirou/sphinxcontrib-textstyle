@@ -16,7 +16,7 @@ requires = ['Sphinx>=0.6', 'setuptools']
 
 setup(
     name='sphinxcontrib-textstyle',
-    version='0.2.1',
+    version='0.2.2',
     url='http://bitbucket.org/r_rudi/sphinxcontrib-textstyle',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-textstyle',
     license='BSD',
