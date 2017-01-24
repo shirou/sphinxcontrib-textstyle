@@ -30,3 +30,7 @@ def test_build_html(app, status, warnings):
     # :color: role
     expected = 'A colored text: <span style="color: red">Color changed</span>'
     assert expected in html
+
+    # column directive
+    expected = '<div class="column admonition">'
+    assert expected in html

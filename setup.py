@@ -8,6 +8,7 @@ This package contains the text style Sphinx extension.
 - ruby (ruby tag. not ruby-lang)
 - del (role and directive)
 - color
+- column
 
 '''
 

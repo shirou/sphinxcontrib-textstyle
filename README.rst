@@ -6,6 +6,7 @@ This is a sphinx extension to use some text styles.
 - Ruby Annotation
 - del
 - color
+- column
 
 Ruby annotation is HTML 5 Ruby tag (http://www.w3.org/TR/ruby/), not ruby
 computer language.
@@ -43,18 +44,20 @@ Roles
 
      :ruby:`東京<とうきょう>`
 
-  A first string becomes ruby base (<rb>) and a string which is inside
-  <> becomes ruby text(<rt>).  For rubytag not supported browser such
-  as Firefox, ( and ) are used to represent ruby text(<rp>). You can
+  A first string becomes ruby base (``<rb>``) and a string which is inside
+  ``<>`` becomes ruby text(``<rt>``).  For rubytag not supported browser such
+  as Firefox, ``(`` and ``)`` are used to represent ruby text(``<rp>``). You can
   change this character in the conf.py. See below config section.
+
 
 - rst:role: del
 
-  Del role makes delete (<del>).
+  Del role makes delete (``<del>``).
 
   ::
 
      :del:`Delete`
+
 
 - rst:directive: del
 
@@ -69,7 +72,7 @@ Roles
 
 - rst:role: color
 
-  Color role changes the text color by using <span style="color">.
+  Color role changes the text color by using ``<span style="color">``.
   Please keep in mind about this may break the separation of content
   and presentation.
 
@@ -77,6 +80,32 @@ Roles
 
      :color:`Color changed<red>`
 
+
+- rst:directive: column
+
+  Directive for writing a column.
+
+  ::
+
+     .. column:: This is just a little column
+
+        When you are writing an article, column is widely used.
+
+  If output is an HTML, ``_static/custom.css`` is required. For example
+
+  ::
+
+     div.column {
+         background-color: #eee;
+         border: 1px solid #ccc;
+     }
+
+  and add these to your ``conf.py``.
+
+  ::
+
+     def setup(app):
+       app.add_stylesheet('custom.css')
 
 
 Config
@@ -102,4 +131,3 @@ License
 ========
 
 The BSD 2-Clause License.
-

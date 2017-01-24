@@ -10,9 +10,10 @@ from __future__ import absolute_import
 
 
 def setup(app):
-    from sphinxcontrib.textstyle import ruby, deleted, color
+    from sphinxcontrib.textstyle import ruby, deleted, color, column
 
     # delegate to submodules
     ruby.setup(app)
     deleted.setup(app)
     color.setup(app)
+    column.setup(app)

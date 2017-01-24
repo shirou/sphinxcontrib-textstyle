@@ -12,3 +12,8 @@ A deleted text: :del:`Delete`
    This is a deleted block.
 
 A colored text: :color:`Color changed<red>`
+
+
+.. column:: the title of column directive
+
+   This is a column block.
