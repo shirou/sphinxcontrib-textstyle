@@ -12,11 +12,11 @@ This package contains the text style Sphinx extension.
 
 '''
 
-requires = ['Sphinx>=0.6', 'setuptools']
+requires = ['Sphinx>=1.6', 'setuptools']
 
 setup(
     name='sphinxcontrib-textstyle',
-    version='0.2.2',
+    version='0.2.3',
     url='http://bitbucket.org/r_rudi/sphinxcontrib-textstyle',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-textstyle',
     license='BSD',
