@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from sphinx_testing import with_app
+import pytest
+
+pytest_plugins = 'sphinx.testing.fixtures'
 
 
-@with_app(srcdir='tests/templates/basic')
-def test_build_html(app, status, warnings):
-    app.build()
-    print(status.getvalue(), warnings.getvalue())
+@pytest.mark.sphinx('html', testroot='basic',
+                    confoverrides={'extensions': ['sphinxcontrib.textstyle']})
+def test_build_html(app, status, warning):
+    app.builder.build_all()
+    print(status.getvalue(), warning.getvalue())
 
-    html = (app.outdir / 'index.html').read_text()
+    html = (app.outdir / 'index.html').text()
     print(html)
 
     # :ruby: role

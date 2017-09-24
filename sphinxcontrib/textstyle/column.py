@@ -1,38 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from docutils.parsers.rst.directives.admonitions import BaseAdmonition
+
+from docutils.parsers.rst.directives.admonitions import Admonition
 from docutils import nodes
-from sphinx.util.compat import make_admonition
+from sphinx.locale import _
 
 
-class NamedNoteDirective(BaseAdmonition):
+class ColumnDirective(Admonition):
     node_class = nodes.admonition
-    css_class = 'note'
-    required_arguments = 0
-    optional_arguments = 1
+    required_arguments = 1
 
     def run(self):
-        title = u''
-        if self.arguments:
-            title += self.arguments[0]
-
-        if 'class' in self.options:
-            self.options['class'].append(self.css_class)
-        else:
-            self.options['class'] = [self.css_class]
-
-        ret = make_admonition(
-            nodes.admonition, self.name, [title], self.options,
-            self.content, self.lineno, self.content_offset, self.block_text,
-            self.state, self.state_machine)
-        ret[0].attributes['name'] = self.name
-
-        return ret
-
-
-class ColumnDirective(NamedNoteDirective):
-    css_class = 'column'
+        self.arguments[0] = self.arguments[0]
+        self.options.setdefault('class', []).append(self.name)
+        r = Admonition.run(self)
+        r[0]['name'] = self.name
+        return r
 
 
 def setup(app):

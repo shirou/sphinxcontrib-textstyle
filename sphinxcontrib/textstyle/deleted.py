@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from docutils import nodes, utils
-from sphinx.util.compat import Directive
+from docutils.parsers.rst import Directive, directives
 from sphinx.util.nodes import set_role_source_info
+from sphinx.locale import _
 
 
 class deleted(nodes.General, nodes.TextElement, nodes.Inline):
